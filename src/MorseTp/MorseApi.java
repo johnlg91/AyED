@@ -121,17 +121,14 @@ class MorseApi {
             if (c == ' ') {
                 result.append('/');
                 i++;
-            }
-            else if (c == tree.getRoot()) {
+            } else if (c == tree.getRoot()) {
                 result.append(' ');
                 tree = morseTree;
                 i++;
-            }
-            else if (tree.getLeft().contains(c)) {
+            } else if (tree.getLeft().contains(c)) {
                 result.append('.');
                 tree = tree.getLeft();
-            }
-            else if (tree.getRight().contains(c)) {
+            } else if (tree.getRight().contains(c)) {
                 result.append('-');
                 tree = tree.getRight();
             }

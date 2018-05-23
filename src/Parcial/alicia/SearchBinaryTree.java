@@ -1,4 +1,4 @@
-package SearchBinaryTreeTP;
+package Parcial.alicia;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,12 +9,6 @@ public class SearchBinaryTree<T extends Comparable<T>> {
 
     SearchBinaryTree() {
         root = null;
-    }
-
-    List<T> vipList(T x) {
-        ArrayList<T> list = new ArrayList<>();
-        vipList(root, list, x);
-        return list;
     }
 
     void printInOrder() {
@@ -61,21 +55,21 @@ public class SearchBinaryTree<T extends Comparable<T>> {
         return root == null;
     }
 
-    public T getRoot() {
+    public T getElement() {
         if (root == null) throw new IllegalStateException("Empty Tree");
         return root.elem;
     }
 
     public SearchBinaryTree<T> left() {
         if (root == null) throw new IllegalStateException("Empty Tree");
-        SearchBinaryTree s = new SearchBinaryTree();
+        SearchBinaryTree<T> s = new SearchBinaryTree<>();
         s.root = root.left;
         return s;
     }
 
     public SearchBinaryTree<T> right() {
         if (root == null) throw new IllegalStateException("Empty Tree");
-        SearchBinaryTree s = new SearchBinaryTree();
+        SearchBinaryTree<T> s = new SearchBinaryTree<T>();
         s.root = root.right;
         return s;
     }
@@ -150,12 +144,5 @@ public class SearchBinaryTree<T extends Comparable<T>> {
         }
     }
 
-    private void vipList(DoubleNode<T> t, List<T> list, T x) {
-        if (t != null) {
-            listInOrder(t.left, list);
-            if (t.elem.equals(x)) list.add(t.elem);
-            listInOrder(t.right, list);
-        }
-    }
 
 }

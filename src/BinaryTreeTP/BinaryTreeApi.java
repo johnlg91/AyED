@@ -6,12 +6,11 @@ import java.util.ArrayList;
 import static java.lang.Math.max;
 import static java.lang.Math.pow;
 
-public class TreeApi<T> {
+public class BinaryTreeApi<T> {
 
     private int getSize(BinaryTree<T> a) {
         if (a.isEmpty()) return 0;
-        else
-            return 1 + getSize(a.getLeft()) + getSize(a.getRight());
+        else return 1 + getSize(a.getLeft()) + getSize(a.getRight());
     }
 
     int getWeight(BinaryTree<T> a) {
@@ -40,10 +39,8 @@ public class TreeApi<T> {
     int completeNodes(BinaryTree<T> a) {
         if (a.isEmpty())
             return 0;
-        if (a.getLeft().isEmpty())
-            return completeNodes(a.getRight());
-        if (a.getRight().isEmpty())
-            return completeNodes(a.getLeft());
+        if (a.getLeft().isEmpty()) return completeNodes(a.getRight());
+        if (a.getRight().isEmpty()) return completeNodes(a.getLeft());
         return 1 + completeNodes(a.getRight()) + completeNodes(a.getLeft());
 
     }
@@ -143,7 +140,7 @@ public class TreeApi<T> {
     }
 
     boolean isIncluded(BinaryTree<T> t1, BinaryTree<T> t2) {
-        if (treeEquals(t1,t2)) return true;
+        if (treeEquals(t1, t2)) return true;
         return isIncluded(t1, t2.getLeft()) || isIncluded(t1, t2.getRight());
     }
 
@@ -180,7 +177,7 @@ public class TreeApi<T> {
 
     public BinaryTree<T> read(String fName) throws IOException, ClassNotFoundException {
         try (FileInputStream f = new FileInputStream(fName);
-        ObjectInputStream o = new ObjectInputStream(f)) {
+             ObjectInputStream o = new ObjectInputStream(f)) {
             return (BinaryTree<T>) o.readObject();
         }
     }

@@ -1,8 +1,8 @@
 package BinaryTreeTP;
 
-class DoubleNode <T> {
-    T elem;
+class DoubleNode<T> {
 
+    T elem;
     DoubleNode<T> right, left;
 
     DoubleNode(T o) {
@@ -11,7 +11,7 @@ class DoubleNode <T> {
 
     DoubleNode(T o, DoubleNode<T> left, DoubleNode<T> right) {
         elem = o;
-        this.right =right;
-        this.left =left;
+        this.right = right;
+        this.left = left;
     }
 }

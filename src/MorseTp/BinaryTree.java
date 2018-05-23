@@ -20,6 +20,7 @@ class BinaryTree<T> {
         if (root.elem.equals(elem) || getLeft().contains(elem) || getRight().contains(elem)) return true;
         return false;
     }
+
     boolean isEmpty() {
         return root == null;
     }

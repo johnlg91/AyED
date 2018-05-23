@@ -3,11 +3,8 @@ package SearchBinaryTreeTP;
 public class Lamp implements Comparable<Lamp> {
 
     private final String code;
-
     private int watts;
-
     private String type;
-
     private int amount;
 
     /**

@@ -1,8 +1,8 @@
-package MorseTp;
+package Parcial.alicia;
 
 class DoubleNode<T> {
-    T elem;
 
+    T elem;
     DoubleNode<T> right, left;
 
     DoubleNode(T o) {

@@ -17,9 +17,9 @@ class BinaryTree<T> {
 
     private boolean contains(T elem) {
         if (isEmpty()) return false;
-        if (root.elem.equals(elem) || getLeft().contains(elem) || getRight().contains(elem)) return true;
-        return false;
+        return root.elem.equals(elem) || getLeft().contains(elem) || getRight().contains(elem);
     }
+
     boolean isEmpty() {
         return root == null;
     }
