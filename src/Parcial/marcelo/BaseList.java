@@ -19,25 +19,22 @@ public class BaseList<T> {
     }
 
     public boolean insertBefore(T elem, T newElem) {
-        for (Node<T> node = first.tail; node.tail != null; node = node.tail) {
+        for (Node<T> node = first.tail; node.tail != null; node = node.tail)
             if (node.tail.head.equals(elem)) {
-                Node<T> newNode = new Node<>(newElem, node.tail);
-                node.tail = newNode;
+                node.tail = new Node<>(newElem, node.tail);
                 return true;
             }
-        }
         return false;
     }
 
     public int count(Condition<T> c) {
-        int counter = 0;
-        return count(first, c, counter);
+        return count(first, c);
     }
 
-    private int count(Node<T> node, Condition<T> c, int counter) {
-        if (c.something(node.head)) return count(node.tail, c, counter + 1);
-        if (node.tail == null) return counter;
-        return count(node.tail, c, counter);
+    private int count(Node<T> node, Condition<T> c) {
+        if (node == null) return 0;
+        if (c.something(node.head)) return 1 + count(node.tail, c);
+        return count(node.tail, c);
     }
 
     public void inject(Function<T> f) {
