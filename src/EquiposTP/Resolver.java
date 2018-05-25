@@ -18,21 +18,17 @@ class Resolver {
         alternatives.add(new Alternative());
     }
 
-    List<Alternative> solve(){
-
-        for (Match match: matches) {
+    List<Alternative> solve() {
+        for (Match match : matches)
             alternatives = addAlternatives(match.team1, match.team2);
-        }
         alternatives = filterValid();
-
         return alternatives;
     }
 
     private List<Alternative> filterValid() {
         List<Alternative> result = new ArrayList<>();
-        for (Alternative a : alternatives) {
+        for (Alternative a : alternatives)
             if (a.isEqual(total)) result.add(a);
-        }
         return result;
     }
 

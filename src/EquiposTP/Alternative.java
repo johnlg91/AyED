@@ -56,8 +56,7 @@ public class Alternative {
 
 
     boolean isEqual(Map<String, Integer> totalPoints) {
-        if (totalPoints.equals(points)) return true;
-        return false;
+        return totalPoints.equals(points);
     }
 
     @Override
