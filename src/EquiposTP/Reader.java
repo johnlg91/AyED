@@ -1,5 +1,8 @@
 package EquiposTP;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 class Reader {
@@ -12,11 +15,9 @@ class Reader {
      * Constructor del Reader q pide y recibe los numeros de equipos
      * y su cantidad de partidos
      */
-    Reader() {
-        scanner = new Scanner(System.in);
-        System.out.println("Ingrese el numero de equipos");
+    Reader(File file) throws FileNotFoundException {
+        scanner = new Scanner(file);
         nTeams = scanner.nextInt();
-        System.out.println("Ingrese el numero de partidos");
         nMatches = scanner.nextInt();
         scanner.nextLine();
     }
@@ -28,7 +29,6 @@ class Reader {
      */
     Map<String, Integer> readPoints() {
         HashMap<String, Integer> result = new HashMap<>();
-        System.out.println("Ingrese el equipo y sus puntos");
         for (int i = 0; i < nTeams; i++) {
             String team = scanner.next();
             int point = scanner.nextInt();
@@ -44,7 +44,6 @@ class Reader {
      */
     List<Match> readMatches() {
         List<Match> results = new ArrayList<>();
-        System.out.println("Ingrese los dos euipos del partido");
         for (int i = 0; i < nMatches; i++) {
             String t1 = scanner.next();
             String t2 = scanner.next();
