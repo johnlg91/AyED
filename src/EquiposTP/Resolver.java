@@ -11,9 +11,9 @@ class Resolver {
 
 
     Resolver() {
-        Reader reader = new Reader();
-        total = reader.readPoints();
-        matches = reader.readMatches();
+        Reader reader = new Reader(); // Crea un Reader para pedir los datos
+        total = reader.readPoints();// Llama un metodo del reader y recibe un mapa de equipos y sus puntos
+        matches = reader.readMatches();// LLama un metodo del Reader para recibir los partidos
         alternatives = new ArrayList<>();
         alternatives.add(new Alternative());
     }

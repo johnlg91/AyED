@@ -8,6 +8,10 @@ class Reader {
     private final int nTeams;
     private final int nMatches;
 
+    /**
+     * Constructor del Reader q pide y recibe los numeros de equipos
+     * y su cantidad de partidos
+     */
     Reader() {
         scanner = new Scanner(System.in);
         System.out.println("Ingrese el numero de equipos");
@@ -17,7 +21,11 @@ class Reader {
         scanner.nextLine();
     }
 
-
+    /**
+     * Recibe los inputs
+     * Crea un mapa con el equipo de key y el puntaje de valor
+     * @return devuelve el mapa
+     */
     Map<String, Integer> readPoints() {
         HashMap<String, Integer> result = new HashMap<>();
         System.out.println("Ingrese el equipo y sus puntos");
@@ -29,8 +37,10 @@ class Reader {
         return result;
     }
 
-    /*
+    /**
+     * Recibe los inputs
      * Crea una lista de Matche(team1,team2)
+     * @return devuelve la lista
      */
     List<Match> readMatches() {
         List<Match> results = new ArrayList<>();
