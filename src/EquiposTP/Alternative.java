@@ -18,27 +18,26 @@ public class Alternative {
         results = a.results;
     }
 
-    Alternative addDraw(String team1, String team2) {
+    /** Generate an alternative 0 = draw, 1 = local, 2 = visitor */
+    Alternative generate(int type, String team1, String team2) {
         Alternative a = new Alternative(this);
-        a.results += "X";
-        a.addPoints(team1, 1);
-        a.addPoints(team2, 1);
-        return a;
-    }
-
-    Alternative addLocal(String team1, String team2) {
-        Alternative a = new Alternative(this);
-        a.results += "1";
-        a.addPoints(team1, 3);
-        a.addPoints(team2, 0);
-        return a;
-    }
-
-    Alternative addVisitor(String team1, String team2) {
-        Alternative a = new Alternative(this);
-        a.results += "2";
-        a.addPoints(team1, 0);
-        a.addPoints(team2, 3);
+        switch (type) {
+            case 0:
+                a.results += "X";
+                a.addPoints(team1, 1);
+                a.addPoints(team2, 1);
+                break;
+            case 1:
+                a.results += "1";
+                a.addPoints(team1, 3);
+                a.addPoints(team2, 0);
+                break;
+            case 2:
+                a.results += "2";
+                a.addPoints(team1, 0);
+                a.addPoints(team2, 3);
+                break;
+        }
         return a;
     }
 

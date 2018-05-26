@@ -14,14 +14,11 @@ public class ResolverTest {
         test("test1.in", "test1.actual", "test1.expected");
         test("test6.in", "test6.actual", "test6.expected");
         test("test1.in", "test1.actual", "test1.expected");
-
     }
 
     private void test(String inName, String outName, String expectedName) throws IOException {
         File in = new File(inName);
-        File out = new File(outName);
 
-        PrintWriter w = new PrintWriter(out);
         Reader reader = new Reader(in); // Crea un Reader para pedir los datos
 
         Map<String, Integer> points = reader.readPoints();// Llama un metodo del reader y recibe un mapa de equipos y sus puntos
@@ -31,18 +28,20 @@ public class ResolverTest {
 
         System.out.println("Brute Force");
         Resolver r = new ResolverBruteForce(points, matches);
-        writeAlternatives(w, r.solve());
+        writeAlternatives(outName, r.solve());
         System.out.println("Time: " + r.getDuration());
 
         System.out.println("Backtracking");
         r = new ResolverBackTracking(points, matches);
-        writeAlternatives(w, r.solve());
+        writeAlternatives(outName, r.solve());
         assertFiles(expectedName, outName);
         System.out.println("Time: " + r.getDuration());
         System.out.println("===================\n");
     }
 
-    private void writeAlternatives(PrintWriter w, List<Alternative> alternatives) {
+    private void writeAlternatives(String outName, List<Alternative> alternatives) throws FileNotFoundException {
+        File out = new File(outName);
+        PrintWriter w = new PrintWriter(out);
         for (Alternative a : alternatives) {
             w.println(a);
         }

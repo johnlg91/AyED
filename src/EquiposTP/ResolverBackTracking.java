@@ -11,36 +11,29 @@ class ResolverBackTracking extends Resolver {
     ResolverBackTracking(Map<String, Integer> points, List<Match> matches) {
         super(matches, points);
         alternatives = new ArrayList<>();
-        alternatives.add(new Alternative());
     }
 
     @Override
     List<Alternative> solve() {
         long start = System.nanoTime();
-        for (Match match : matches)
-            alternatives = addAlternatives(match.team1, match.team2);
-        alternatives = filterValid();
+        solve(new Alternative(), 0);
         duration = System.nanoTime() - start;
         return alternatives;
     }
 
-    private List<Alternative> filterValid() {
-        List<Alternative> result = new ArrayList<>();
-        for (Alternative a : alternatives)
-            if (a.isEqual(real)) result.add(a);
-        return result;
+    private void solve(Alternative alternative, int matchNumber) {
+        if (matchNumber >= matches.size()) {
+            if (alternative.isEqual(real)) alternatives.add(alternative);
+        }
+        else {
+            String team1 = matches.get(matchNumber).team1;
+            String team2 = matches.get(matchNumber).team2;
+            for (int type = 0; type < 3; type++) {
+                Alternative a = alternative.generate(type, team1, team2);
+                if (a.isValid(real))
+                    solve(a, matchNumber+1);
+            }
+        }
     }
 
-    private List<Alternative> addAlternatives(String team1, String team2) {
-        List<Alternative> result = new ArrayList<>();
-        for (Alternative a : alternatives) {
-            Alternative draw = a.addDraw(team1, team2);
-            if (draw.isValid(real)) result.add(draw);
-            Alternative local = a.addLocal(team1, team2);
-            if (local.isValid(real)) result.add(local);
-            Alternative visitor = a.addVisitor(team1, team2);
-            if (visitor.isValid(real)) result.add(visitor);
-        }
-        return result;
-    }
 }

@@ -34,12 +34,11 @@ class ResolverBruteForce extends Resolver {
     private List<Alternative> addAlternatives(String team1, String team2) {
         List<Alternative> result = new ArrayList<>();
         for (Alternative a : alternatives) {
-            Alternative draw = a.addDraw(team1, team2);
-            if (draw.isValid(real)) result.add(draw);
-            Alternative local = a.addLocal(team1, team2);
-            if (local.isValid(real)) result.add(local);
-            Alternative visitor = a.addVisitor(team1, team2);
-            if (visitor.isValid(real)) result.add(visitor);
+            for (int type = 0; type < 3; type++) {
+                Alternative newAlternative = a.generate(type, team1, team2);
+                if (newAlternative.isValid(real))
+                    result.add(a);
+            }
         }
         return result;
     }
