@@ -12,6 +12,7 @@ public class ResolverTest {
     @Test
     public void testSolve() throws IOException {
         test("test1.in", "test1.actual", "test1.expected");
+        test("test2.in", "test2.actual", "test2.expected");
         test("test6.in", "test6.actual", "test6.expected");
         test("test1.in", "test1.actual", "test1.expected");
     }
@@ -26,16 +27,22 @@ public class ResolverTest {
 
         System.out.println("Testing " + inName);
 
-        System.out.println("Brute Force");
+        System.out.println("Brute Force:");
         Resolver r = new ResolverBruteForce(points, matches);
         writeAlternatives(outName, r.solve());
         System.out.println("Time: " + r.getDuration());
+        System.out.println("Comparisons: " + r.getComparisons());
+        System.out.println("Matches: " + r.getAlternativesCount());
 
-        System.out.println("Backtracking");
+
+
+        System.out.println("Backtracking:");
         r = new ResolverBackTracking(points, matches);
         writeAlternatives(outName, r.solve());
         assertFiles(expectedName, outName);
         System.out.println("Time: " + r.getDuration());
+        System.out.println("Comparisons: " + r.getComparisons());
+        System.out.println("Matches: " + r.getAlternativesCount());
         System.out.println("===================\n");
     }
 

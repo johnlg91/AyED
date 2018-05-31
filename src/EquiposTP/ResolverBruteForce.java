@@ -17,8 +17,10 @@ class ResolverBruteForce extends Resolver {
     @Override
     List<Alternative> solve() {
         long start = System.nanoTime();
+        // Generate all Alternatives
         for (Match match : matches)
             alternatives = addAlternatives(match.team1, match.team2);
+        // Now filter only the valid ones
         alternatives = filterValid();
         duration = System.nanoTime() - start;
         return alternatives;
@@ -26,8 +28,10 @@ class ResolverBruteForce extends Resolver {
 
     private List<Alternative> filterValid() {
         List<Alternative> result = new ArrayList<>();
-        for (Alternative a : alternatives)
+        for (Alternative a : alternatives) {
             if (a.isEqual(real)) result.add(a);
+            comparisons++;
+        }
         return result;
     }
 
@@ -36,8 +40,9 @@ class ResolverBruteForce extends Resolver {
         for (Alternative a : alternatives) {
             for (int type = 0; type < 3; type++) {
                 Alternative newAlternative = a.generate(type, team1, team2);
-                if (newAlternative.isValid(real))
-                    result.add(a);
+                alternativesCount++;
+                if (newAlternative.isValid(real)) result.add(a);
+                comparisons++;
             }
         }
         return result;

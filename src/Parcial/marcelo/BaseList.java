@@ -9,6 +9,7 @@ public class BaseList<T> {
     }
 
     public boolean insertAfter(T elem, T newElem) {
+        if (first == null) return false;
         for (Node<T> node = first.tail; node.tail != null; node = node.tail) {
             if (node.head.equals(elem)) {
                 node.tail = new Node<>(newElem, node.tail);
@@ -19,6 +20,7 @@ public class BaseList<T> {
     }
 
     public boolean insertBefore(T elem, T newElem) {
+        if (first == null) return false;
         for (Node<T> node = first.tail; node.tail != null; node = node.tail)
             if (node.tail.head.equals(elem)) {
                 node.tail = new Node<>(newElem, node.tail);

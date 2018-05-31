@@ -41,9 +41,9 @@ public class Alternative {
         return a;
     }
 
-    boolean isValid(Map<String, Integer> totalPoints) {
+    boolean isValid(Map<String, Integer> real) {
         for (String team : points.keySet()) {
-            if (points.get(team) > totalPoints.get(team)) return false;
+            if (points.get(team) > real.get(team)) return false;
         }
         return true;
     }

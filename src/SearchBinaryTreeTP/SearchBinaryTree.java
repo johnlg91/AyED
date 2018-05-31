@@ -98,7 +98,7 @@ public class SearchBinaryTree<T extends Comparable<T>> {
     private boolean exists(DoubleNode<T> t, T x) {
         if (t == null) return false;
         if (x.compareTo(t.elem) == 0) return true;
-        else if (x.compareTo(t.elem) < 0) return false;
+        else if (x.compareTo(t.elem) < 0) return exists(t.left,x);
         else return exists(t.right, x);
 
     }
