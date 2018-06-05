@@ -57,7 +57,7 @@ public class Ej2 {
     }
 
     public static void main(String[] args) {
-        String s = "{{";
+        String s = "{{}";
         Ej2 ej = new Ej2(s);
         if (ej.checker()) System.out.println("OK!");
         else System.out.println("not ok");

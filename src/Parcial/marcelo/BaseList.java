@@ -35,8 +35,7 @@ public class BaseList<T> {
 
     private int count(Node<T> node, Condition<T> c) {
         if (node == null) return 0;
-        if (c.something(node.head)) return 1 + count(node.tail, c);
-        return count(node.tail, c);
+        return c.something(node.head) ? 1 + count(node.tail, c) : count(node.tail, c);
     }
 
     public void inject(Function<T> f) {
